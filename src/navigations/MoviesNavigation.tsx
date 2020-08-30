@@ -1,9 +1,8 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BottomNavigation } from 'react-native-paper';
 import { TopRatedMoviesScreen, PopularMoviesScreen } from '../screens';
 
-const routes = [
+const plainRoutes = [
   {
     name: "TopRatedMovies",
     label: "Top Rated",
@@ -18,24 +17,23 @@ const routes = [
   }
 ];
 
-const Tab = createBottomTabNavigator();
-
 const MoviesNavigation = () => {
+  const [index, setIndex] = React.useState(0);
+
+  let scenes = {};
+  const [routes] = React.useState(plainRoutes.map(value => {
+    scenes = { ...scenes, [value.name]: value.component };
+    return { key: value.name, title: value.label, icon: value.icon };
+  }));
+
+  const renderScene = BottomNavigation.SceneMap(scenes);
+
   return (
-    <Tab.Navigator>
-      {routes.map((route, index) =>
-        <Tab.Screen
-          key={index}
-          name={route.name}
-          component={route.component}
-          options={{
-            tabBarLabel: route.label,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name={route.icon} color={color} size={size} />
-            )
-          }} />
-      )}
-    </Tab.Navigator>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
   );
 };
 
