@@ -1,12 +1,22 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNavigation from './navigations/HomeNavigation';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from './constants/theme';
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: PRIMARY_COLOR,
+    accent: SECONDARY_COLOR,
+  }
+};
 
 const App = () => {
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <NavigationContainer>
         <HomeNavigation />
       </NavigationContainer>
