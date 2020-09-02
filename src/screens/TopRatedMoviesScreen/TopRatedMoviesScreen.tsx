@@ -8,12 +8,12 @@ import { Container, Content, Header } from '../../components';
 
 const TopRatedMoviesScreen = () => {
   const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(-1);
+  const [totalPages, setTotalPages] = useState(0);
   const [data, setData] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(findTopRatedMovies(page + 1));
+    dispatch(findTopRatedMovies(1));
   }, [dispatch]);
 
   const { data: storeData, loading: storeLoading, error: storeError } = useSelector(state => state.topRatedMovies);
@@ -42,11 +42,11 @@ const TopRatedMoviesScreen = () => {
 
   const onRefresh = () => {
     setPage(0);
-    dispatch(findTopRatedMovies(page + 1));
+    dispatch(findTopRatedMovies(1));
   };
 
   const onEndReached = () => {
-    if (page < totalPages || totalPages > -1) {
+    if (!storeLoading && page < totalPages) {
       dispatch(findTopRatedMovies(page + 1));
     }
   };
