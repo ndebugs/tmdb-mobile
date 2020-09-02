@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNavigation from './navigations/HomeNavigation';
@@ -19,11 +21,13 @@ const App = () => {
   useEffect(() => SplashScreen.hide(), []);
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <HomeNavigation />
-      </NavigationContainer>
-    </PaperProvider>
+    <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <HomeNavigation />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   );
 };
 
