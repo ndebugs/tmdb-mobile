@@ -1,11 +1,11 @@
-#TMDB Mobile
+# TMDB Mobile
 
-##Installing Dependencies
+## Installing Dependencies
 ```sh
 npm install
 ```
 
-##Running on Devices
+## Running on Devices
 Android:
 ```sh
 npm run android
@@ -15,7 +15,7 @@ iOS:
 npm run ios
 ```
 
-##Testing
+## Testing
 ```sh
 npm run test
 ```
