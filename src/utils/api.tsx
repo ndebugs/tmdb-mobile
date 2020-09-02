@@ -7,7 +7,6 @@ const commonAxios = axios.create({
 
 commonAxios.interceptors.request.use(function (config) {
   config.headers.Authorization = 'Bearer ' + READ_ACCESS_TOKEN;
-console.log(config);
   return config;
 });
 

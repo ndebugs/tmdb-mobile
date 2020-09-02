@@ -52,7 +52,7 @@ const TopRatedMoviesScreen = () => {
   };
 
   return (
-    <Container>
+    <Container error={storeError?.message}>
       <Header title="Movies" />
       <Content>
         <FlatList
