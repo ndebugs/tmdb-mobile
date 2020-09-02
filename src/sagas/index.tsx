@@ -1,8 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
-import { watchFindTopRatedMovies } from './movies';
+import { watchFindPopularMovies, watchFindTopRatedMovies } from './movies';
 
 export default function* rootSaga() {
   yield all([
+    fork(watchFindPopularMovies),
     fork(watchFindTopRatedMovies)
   ]);
 };
