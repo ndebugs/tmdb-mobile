@@ -1,11 +1,19 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import * as redux from 'react-redux';
+import { shallow } from 'enzyme';
 import PopularTVScreen from '../../src/screens/PopularTVScreen';
 
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(fn => fn()),
+  useDispatch: () => jest.fn()
+}));
+
+const spy = jest.spyOn(redux, 'useSelector');
+spy.mockReturnValue({});
+
 describe('<PopularTVScreen>', () => {
-  it('has text', () => {
-    const { getByTestId } = render(<PopularTVScreen />);
-    const text = getByTestId('blankLabel');
-    expect(text).not.toBeEmpty();
+  it('should match snapshot', () => {
+    const component = shallow(<PopularTVScreen />);
+    expect(component).toMatchSnapshot();
   });
 });

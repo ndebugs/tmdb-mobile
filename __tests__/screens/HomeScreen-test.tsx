@@ -1,11 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { shallow } from 'enzyme';
 import HomeScreen from '../../src/screens/HomeScreen';
 
 describe('<HomeScreen>', () => {
-  it('has text', () => {
-    const { getByTestId } = render(<HomeScreen />);
-    const text = getByTestId('blankLabel');
-    expect(text).not.toBeEmpty();
+  it('should match snapshot', () => {
+    const component = shallow(<HomeScreen />);
+    expect(component).toMatchSnapshot();
   });
 });
